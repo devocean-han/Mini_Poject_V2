@@ -130,13 +130,13 @@
 
     </style>
     <script>
-                let count = 0;
+        let count = 0;
         let doc = [];
         $(document).ready(function () {
             show_comment()
         });
 
-                // GET - 댓글 불러오기
+        // GET - 댓글 불러오기
         function show_comment() {
             $('#comment-cards').empty()
             $.ajax({
@@ -191,7 +191,7 @@
                 $('#comment-cards').show();
             }
         }
-        // 과거수 정렬
+        // 과거순 정렬
         function old_comment() {
             $('#comment-cards').empty()
 

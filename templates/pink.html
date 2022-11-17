@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta property="og:title" content="..."/>
-    <meta property="og:description" content="..."/>
+    <meta property="og:description" content="Self-introduction personal page"/>
     <meta property="og:image"
           content="https://www.section.io/engineering-education/history-of-nodejs/nodejs-use-cases-cover-image.png"/>
 
@@ -21,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/index.css">
     <link href="../../fontawesome-free-6.2.0-web/css/all.min.css" rel="stylesheet">
-<!--    <script src="06main_page_comments.js"></script>-->
     <style>
         * {
             font-family: 'Do Hyeon', sans-serif;
@@ -136,91 +135,7 @@
         }
     </style>
     <script>
-        // // 페이지 로딩이 완료되면
-        // $(document).ready(function () {
-        //     reload_comment()
-        // });
-        //
-        // // POST
-        // function save_comment() {
-        //     // '코멘트'나 '닉네임'칸 중 하나라도 비어있으면 입력해달라는 alert() 띄우기
-        //     let name = $('#name').val()
-        //     let comment = $('#comment').val()
-        //     if (!name) {
-        //         alert('닉네임을 작성해주세요!')
-        //         return
-        //     }
-        //     if (!comment) {
-        //         alert('코멘트 내용을 작성해주세요!')
-        //         return
-        //     }
-        //     let check = confirm('이걸로 포스팅 하시겠습니까? 수정과 삭제가 어렵습니다^^')
-        //     if (check) {
-        //         // Ajax로 POST 요청 보내기
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: '/api/post_comment',
-        //             data: {'name_given': name, 'comment_given': comment},
-        //             success: function (response) {
-        //                 alert(response['msg'])
-        //                 window.location.reload()
-        //             }
-        //         })
-        //     }
-        // }
-        //
-        // // GET
-        // function reload_comment(reverse=false) { // 디폴트는 과거순 정렬. 최신순으로 보려면 reverse=true;
-        //     $('#comment-cards').empty()
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: '/api/get_comments',
-        //         data: {},
-        //         success: function (response) {
-        //             alert(response['msg'])
-        //             let comments_list = response['comments_list']
-        //             if (reverse === true) { // 만약 최신순이라면: 받아온 순서 거꾸로.
-        //                 comments_list = comments_list.reverse()
-        //             }
-        //             for (let i = 0; i < comments_list.length; i++) {
-        //                 let name = comments_list[i]['name']
-        //                 let comment = comments_list[i]['comment']
-        //                 // if
-        //                 let time = comments_list[i]['time']
-        //                 console.log(typeof(time), time)
-        //                 let temp_html = `<div onclick="delete_comment()" class="card" data-time=${time}>
-        //                                     <div class="card-body">
-        //                                         <blockquote class="blockquote mb-0">
-        //                                             <p>${comment}</p>
-        //                                             <footer class="blockquote-footer">${name}</footer>
-        //                                         </blockquote>
-        //                                     </div>
-        //                                 </div>`
-        //                 $('#comment-cards').append(temp_html)
-        //             }
-        //         }
-        //     })
-        // }
 
-        // // $('.card').on('click', )
-        // // DELETE : 아무 카드를 누르면 '삭제하시겠습니까?' 띄우고 '확인'버튼과 '취소'버튼 중 선택
-        // function delete_comment() {
-        //     let name = $(this).text() // children("p").text()
-        //     let comment = $(this).children().text()
-        //     if (confirm("해당 코멘트를 삭제하시겠습니까?")) {
-        //         // '확인'버튼을 눌렀을 시:
-        //         // 카드 영역마다 '누르기' 기능 심기
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: '/homework2',
-        //             data: { name: name, comment: comment },
-        //             success: function (response) {
-        //                 alert(response['msg'])
-        //                 window.location.reload()
-        //             }
-        //         })
-        //     }
-        // }
 
         // Official 버튼을 누르면 Unofficial 카드들을 모두 숨김.
         // Official 카드들을 보임
@@ -241,39 +156,22 @@
             $('.unofficial-cards').show();
         }
 
-        // 댓글 열고 닫기
-        function showComments(reverse=false) {
-            // if ($('#comment-cards').is(':hidden')) {
-            //     $('#comment-cards').show();
-            // } else {
-                if (reverse === true) {
-                    reload_comment(reverse)
-                } else {
-                    reload_comment();
-                }
-                $('#comment-cards').show();
-            // }
-        }
 
-        function hideComments() {
-            if ($('#comment-cards').is(':visible')) {
-                $('#comment-cards').hide();
-            }
-        }
         // // Un과 Official에 마우스가 올라오면 글씨 바꾸기:
         // $("#official").hover(function() {
         //     $("#official").val("소개");
         // });
         //=> 왜 안되지ㅠㅠ
 
-        // TMI 카드 중 4번째 카드에 마우스 오버하면 다른 내용물 표시:
-        // $(function() {
-            $("#2").mouseover(function() {
-                alert("hover가 인식되긴 했소 ");
-                $("img", this).attr(src, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD_sfZruriNZ2vQ0L6yLm9Lm_k0lvPIKxPQ&usqp=CAU");
-                $("h5", this).text("9번");
-                $("p", this).text("...라고 합니다만 그보다는 에니어그램의 9번이 더 맞는 것 같습니다")
-            });
+        {#// TMI 카드 중 4번째 카드에 마우스 오버하면 다른 내용물 표시:#}
+        {#// $(function() {#}
+        {#    $("#2").mouseover(function() {#}
+        {#        alert("hover가 인식되긴 했소 ");#}
+        {#        $("img", this).attr(src, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD_sfZruriNZ2vQ0L6yLm9Lm_k0lvPIKxPQ&usqp=CAU");#}
+        {#        $("h5", this).text("9번");#}
+        {#        $("p", this).text("...라고 합니다만 그보다는 에니어그램의 9번이 더 맞는 것 같습니다")#}
+        {#    });#}
+        // => 왜 안될까...
 
         // 어째선지 인라인으로 넣어줘야 정상 작동한다. 그래서 함수로 만들기로 했다.
         // 1번 카드에 마우스 올라오면 내용물 바꾸기:
@@ -287,23 +185,6 @@
             $("#card1").find("p").text("이상 vs")
         }
 
-        // function card2In() {
-        //     $("#card2").html('<div id="card2" onmouseover="card2In()" onmouseleave="card2Out()" class="card">' +
-        //         '                    <div class="card-body">\n' +
-        //         '                    <h5 class="card-title">취미: 폼롤러!!</h5>\n' +
-        //         '                    <p class="card-text">자기 전이나 특히 운동 후엔 폼롤러! 뼈와 근육이 분리되는 그 느낌이 좋아요bb</p>\n' +
-        //         '                </div>\n' +
-        //         '            </div>')
-        // }
-        // function card2Out() {
-        //     $("#card2").html('<div id="card2" onmouseover="card2In()" onmouseleave="card2Out()" class="card">\n' +
-        //         '                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDASmMpOQBMGTwFyWI_EtVbdsVdyMC2BbTHQ&usqp=CAU"\n' +
-        //         '                     class="card-img-top" alt="...">\n' +
-        //         '                <div class="card-body">\n' +
-        //         '                    <h5 class="card-title">취미: 폼롤러!!</h5>\n' +
-        //         '                </div>\n' +
-        //         '            </div>')
-        // }
         function card2In() {
             $("#card2").find("h5").text("");
             $("#card2").find("p").text('자기 전이나 특히 운동 후에 폼롤러! 뼈와 근육이 분리되는 그 느낌이 좋아요bb')
@@ -333,12 +214,7 @@
             $("#card5").find("h5").text("");
             $("#card5").find("p:first-child").html('<p class="card-text">Remus Lupin <br>리무스 루핀 -해리포터</p>')
             $("#card5").find(".text-muted").text("어째선지 모두 죽음을 맞이한 인물들(?)")
-            // $("#card5").find(".card-group").html('<h5 class="card-title">: INFJ + 9W1 조합의 캐릭터</h5>' +
-            //     '<p class="card-text"><small class="text-muted">어째선지 모두 죽음을 맞이한 인물들(?)</small></p>')
-            // $("#card5").find("p").html('<p class="card-text"><small class="text-muted">저 9번의 캐해석 이보다 더 정확할 순 없다</small></p>')
-            // $("#card5").find(".card-text:first-child").text("INFJ + 9W1 조합")
-            // $("#card5").find(".card-text:nth-child(2)").text("")
-            // $("#card5").find(".text-muted:nth-child(1)").text("어째선지 모두 죽음을 맞이한 인물들(?)")
+
         }
 
         function card5Out() {
@@ -346,27 +222,6 @@
             $("#card5").find("h5").text("픽션 속 캐릭터로 알아보는 INFJ와 9W1의 콤보");
             $("#card5").find("p:first-child").html('<p class="card-text">Master Oogway <br>우그웨이 대사부 -쿵푸팬더</p>')
             $("#card5").find(".text-muted").text("")
-            // $("#card5").find(".ccard-group").html('<div class="row-cols-1 card-group">\n' +
-            //     '                    <div class="card">\n' +
-            //     '                        <img src="https://64.media.tumblr.com/15f200fea329b628f112bfd9348f9ccd/tumblr_nrydbnpNvv1tgh6zro5_400.png" class="card-img-top" alt="...">\n' +
-            //     '                        <div class="card-body">\n' +
-            //     '                            <h5 class="card-title">Remus Lupin</h5>\n' +
-            //     '<!--                            <h5 class="card-title">()</h5>-->\n' +
-            //     '                            <p class="card-text">리무스 루핀</p>\n' +
-            //     '                            <p class="card-text"><small class="text-muted">해리포터</small></p>\n' +
-            //     '                        </div>\n' +
-            //     '                    </div>\n' +
-            //     '                    <div class="card">\n' +
-            //     '                        <img src="https://static1.personality-database.com/profile_images/88dfaebec0df430da4e940617f0db6cf.png" class="card-img-top" alt="...">\n' +
-            //     '                        <div class="card-body">\n' +
-            //     '                            <h5 class="card-title">Master Oogway</h5>\n' +
-            //     '<!--                            <h5 class="card-title">()</h5>-->\n' +
-            //     '                            <p class="card-text">우그웨이 대사부</p>\n' +
-            //     '                            <p class="card-text"><small class="text-muted">쿵푸팬더</small></p>\n' +
-            //     '                        </div>\n' +
-            //     '                    </div>\n' +
-            //     '                </div>')
-            // $("#card5").find("p").text("이보다는 에니어그램의 9번이 더 맞는 편입니다")
         }
 
         // 7번 카드에 마우스 올라오면 내용물 바꾸기:
