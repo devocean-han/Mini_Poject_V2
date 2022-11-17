@@ -123,11 +123,7 @@
     </style>
 
     <script>
-        let count = 0;
-        let doc = [];
-        $(document).ready(function () {
-            show_comment()
-        });
+
         // POST - 댓글 저장하기
         function save_comment() {
             let name = $('#name').val()
@@ -274,14 +270,6 @@
             </div>
         </div>
     </div>
-
-    <button onclick="show_comment()" type="button" class="btn btn-outline-light" id="reload_comment">방명록 보기</button>
-    <div class="mycards" id="comment-list">
-        <div class="card">
-        </div>
-    </div>
-
-    <button onclick="close_comment()" type="button" class="btn btn-outline-light">닫기</button>
 </div>
 
     <script>

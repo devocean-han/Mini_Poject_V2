@@ -65,11 +65,6 @@
             box-shadow: 0px 0px 3px 0px black;
             padding: 20px;
         }
-        .mycomment {
-            width: 95%;
-            max-width: 500px;
-            margin: auto;
-        }
         .pic1{
             width: 100%;
             max-width: 360px;
@@ -113,9 +108,7 @@
                 }
             })
         }
-        function modify(){
 
-        }
         function rotation(e){
             count++;
             let deg = count*180;
@@ -145,7 +138,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="https://i.ibb.co/48S1N1f/Kakao-Talk-20221017-145039690.jpg"
+                        <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbe47d20f-7ca9-4dc1-a649-03d2345634a7%2FKakaoTalk_20221017_145039690.jpg?table=block&id=538f7a12-d08e-4e12-b0d0-509b6c537e0c&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=710&userId=&cache=v2"
                             class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
@@ -174,12 +167,6 @@
             </div>
             <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
         </div>
-        <button onclick="new_comment()" type="button" class="btn btn-dark">최신</button>
-        <button onclick="old_comment()" type="button" class="btn btn-dark">과거</button>
-        <div class="mycomment" id="comment-list">
-        </div>
     </main>
-
-
 </body>
 </html>

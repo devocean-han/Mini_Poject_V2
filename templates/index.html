@@ -93,7 +93,7 @@
         display: flex;
         width: 100%;
         height: 20%;
-        /* justify-content: center; */
+        {#justify-content: center;#}
         align-items: center;
         
         text-align: center;
@@ -112,6 +112,22 @@
         border: 2px solid black;
         cursor: pointer;
       }
+        .comment-buttons {
+            width: 300px;
+
+            /* 상자(나) 안 내용물 가운데 정렬하기 4형제 */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            margin: 20px auto;
+        }
+
+        .comment-buttons > button {
+            margin: 0px 5px;
+        }
+
     </style>
     <script>
                 let count = 0;
