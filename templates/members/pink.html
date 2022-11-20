@@ -212,7 +212,7 @@
             $("#card5").find("img").attr("src", "/static/Remus_Lupin_400.png")
             // $("#card5").find("h5").html('<h5 class="card-title">Remus Lupin <br>리무스 루핀 -해리포터</h5>')
             $("#card5").find("h5").text("");
-            $("#card5").find("p:first-child").html('<p class="card-text">Remus Lupin <br>리무스 루핀 -해리포터</p>')
+            $("#card5").find(".card-main-text").html('<p class="card-text">Remus Lupin <br>리무스 루핀 -해리포터</p>')
             $("#card5").find(".text-muted").text("어째선지 모두 죽음을 맞이한 인물들(?)")
 
         }
@@ -246,7 +246,7 @@
             let time = today.toLocaleString()
             $.ajax({
                 type: 'POST',
-                url: '/api/save_comment',
+                url: '/api/comments',
                 data: {name_give: name, comment_give: comment, time_give: time},
                 success: function (response) {
                     alert(response['msg'])
@@ -279,7 +279,7 @@
         <div class="row g-0">
             <div class="col-md-4">
                 <img src="/static/KakaoTalk_20221020_161844914.jpg" class="img-fluid rounded-start"
-                    alt="https://ca.slack-edge.com/T043597JK8V-U04784BS4RW-e4a2309d641a-512">
+                     alt="https://ca.slack-edge.com/T043597JK8V-U04784BS4RW-e4a2309d641a-512">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -346,7 +346,7 @@
                     class="card-img-top" alt="">
                 <div class="card-body">
                     <h5 class="card-title">픽션 속 캐릭터로 알아보는 INFJ와 9W1의 콤보</h5>
-                    <p class="card-text">Master Oogway <br>우그웨이 대사부 -쿵푸팬더</p>
+                    <p class="card-text card-main-text">Master Oogway <br>우그웨이 대사부 -쿵푸팬더</p>
                     <p class="card-text"><small class="text-muted"></small></p>
                 </div>
             </div>
@@ -369,6 +369,26 @@
                 <div class="card-body">
                     <h5 class="card-title">진짜 TMI</h5>
                     <p class="card-text">번개 치는 거 보는 걸 좋아해요. 천둥이랑 비구름도요. 다들 구름 한 번 보고 가세요/xtrom</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div id="card8" onmouseover="card8In()" onmouseleave="card8Out()" class="card">
+                <div class="card-body">
+                    <h5 class="card-title">협업시 스타일</h5>
+                    <p class="card-text">앞으로 더 적어나가야 할 듯 해요. 우선은... 팀 전체 분위기에 잘 맞추는 편입니다.
+                        또 제가 리더로 있을 때보다 팀원 1로 있을 때 팀이 더 잘 됩니다.
+                        생각하고 말하고 행동하고, 뭐든지 하는 게 좀 느린데 팀원 분들이 조금 여유롭게 받아주시면 최고의 성과를 냅니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div id="card9" onmouseover="card9In()" onmouseleave="card9Out()" class="card">
+                <div class="card-body">
+                    <h5 class="card-title">객관적인 장점</h5>
+                    <p class="card-text">갈등을 잘 일으키지 않는 편입니다. 또 뭐가 있을까요...
+                        주변 상황에 잘 휘둘리지 않고 맡은 일을 해나갑니다. 다른 사람에게서 장점이랄까
+                        본받아야 할 점들을 잘 찾아내는 편입니다. </p>
                 </div>
             </div>
         </div>

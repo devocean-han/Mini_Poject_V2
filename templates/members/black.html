@@ -227,7 +227,7 @@
             let time = today.toLocaleString()
             $.ajax({
                 type: 'POST',
-                url: '/api/save_comment',
+                url: '/api/comments',
                 data: {name_give: name, comment_give: comment, time_give: time},
                 success: function (response) {
                     alert(response['msg'])

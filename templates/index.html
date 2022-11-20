@@ -25,12 +25,14 @@
       }
 
       .ourtitle {
-          height: 800px;
+          height:1500px;
           width: 100%;
           color: white;
 
           background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://w.namu.la/s/5dfed9730297d49010e450326a171346b2399ce3fc816760379ff0945b0d16ec37dd2dcf6de462bd4ab75c144cee00f94dd99d6a102b65bfd046db7c8dfe23a6c7320f51fbfaf791f1d3b4f8ca58c6fe409b3e2bd6bd3215aa4dc30086a9a5e0b30238cd9a315b19dcb211d74c4c938c");
           background-position: center;
+
+            background-size: cover;
 
           font-weight: bold;
           font-size: xx-large;
@@ -66,7 +68,7 @@
           height: 350px;
 
           margin: 0 auto;
-          background: black;
+
           padding: 10px 0;
       }
 
@@ -91,18 +93,20 @@
 
       .sub-container {
         display: flex;
-        width: 100%;
+        width: 80%;
         height: 20%;
-        {#justify-content: center;#}
+        justify-content: center;
         align-items: center;
-        
         text-align: center;
         font-size: 30px;
-        /* background-color: red; */
+        background-color: red;
       }
 
       .sub-container div {
-        margin-left: 150px;
+          float: left;
+        margin-left: 100px;
+          margin-top: 10px;
+          {#margin: 20% 10px 20% 0px;#}
       }
 
       .sub-container img {
@@ -111,6 +115,7 @@
 
         border: 2px solid black;
         cursor: pointer;
+
       }
         .comment-buttons {
             width: 300px;
@@ -130,18 +135,18 @@
 
     </style>
     <script>
-        let count = 0;
+                let count = 0;
         let doc = [];
         $(document).ready(function () {
             show_comment()
         });
 
-        // GET - 댓글 불러오기
+                // GET - 댓글 불러오기
         function show_comment() {
             $('#comment-cards').empty()
             $.ajax({
                 type: "GET",
-                url: "/api/load_comment",
+                url: "/api/comments",
                 data: {},
                 success: function (response) {
                     doc = response['comments_list']
@@ -191,7 +196,7 @@
                 $('#comment-cards').show();
             }
         }
-        // 과거순 정렬
+        // 과거수 정렬
         function old_comment() {
             $('#comment-cards').empty()
 
@@ -252,7 +257,6 @@
       </div>
       <div class="ourgoal">
       </div>
-  </div>
 
   <div class="bigbox">
     <h2 class="expanded">RANGERS</h2>
@@ -269,9 +273,7 @@
       alt="yellow ranger" id="page_4">
     <img class="pic" src="https://bbts1.azureedge.net/images/p/full/2022/05/651240b9-dca6-474e-8af5-b685e070963f.jpg"
       alt="pink ranger" id="page_5">
-  </div>
-
-  <div class="main-background">
+    <div class="main-background">
     <div class="sub-container">
       <div>
         <img src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.velog.io%2Fvelog.png" id="link_1">
@@ -295,6 +297,10 @@
       </div>
     </div>
   </div>
+</div>
+
+      </div>
+  <button onclick="show_comment()" type="button" class="btn btn-outline-light" id="reload_comment">방명록 보기</button>
     <div class="comment-buttons">
     <!--    댓글 보기는 '과거순'이 디폴트-->
         <button onclick="old_comment()" type="button" class="btn btn-outline-primary">과거순</button>
@@ -307,7 +313,7 @@
 
     // 개인 블로그 -------------------------------
     $('#link_1').on('click', () => location.href="https://velog.io/@ckdals1994" );
-      
+
     $('#link_2').on('click', () => location.href="https://velog.io/@younghwan_90s" );
 
     $('#link_3').on('click', () => location.href="https://ruby-bougon-ec8.notion.site/TIL-1-a285a9c4b5fd4f58842c3c15690ee34e" );
@@ -319,7 +325,7 @@
 
     // 개인 페이지 이동//-----------------------------
     $('#page_1').on('click', () => location.href="/red" );
-      
+
     $('#page_2').on('click', () => location.href="/blue" );
 
     $('#page_3').on('click', () => location.href="/black" );
