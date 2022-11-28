@@ -250,7 +250,9 @@
                 url: '/api/comments',
                 data: {name_give: name, comment_give: comment, time_give: time, pwd_give: pwd},
                 success: function (response) {
-                    alert(response['msg'])
+                    console.log(response, typeof(response))
+                    alert(response)
+                    {#alert(response['msg'])#}
                     window.location.reload()
                 }
             })

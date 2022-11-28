@@ -130,7 +130,9 @@ def post_comment():
         }
         id = db.miniProject.insert_one(doc)
 
-        resp = jsonify({'msg': "Comment added successfully!"})
+        resp = jsonify("Comment added successfully!", msg2="Another message~")
+        # resp = jsonify({'msg': "Comment added successfully!", 'msg2':"Another message~"})
+        # resp = jsonify(msg="Comment added successfully!", msg2="Another message~")
             # 'msg': 라고 안해줬는데 출력이 잘 될까? => 'undefined'라고 출력된다.
         resp.status_code = 200
         return resp
