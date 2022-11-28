@@ -244,10 +244,11 @@
             let comment = $('#comment').val()
             let today = new Date()
             let time = today.toLocaleString()
+            let pwd = $('#password').val()
             $.ajax({
                 type: 'POST',
                 url: '/api/comments',
-                data: {name_give: name, comment_give: comment, time_give: time},
+                data: {name_give: name, comment_give: comment, time_give: time, pwd_give: pwd},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
@@ -408,6 +409,10 @@
     <div class="form-floating mb-3">
         <input type="email" class="form-control" id="name" placeholder="name@example.com">
         <label for="floatingInput">닉네임</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="password" placeholder="name@example.com">
+        <label for="floatingInput">비밀번호</label>
     </div>
     <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="comment"

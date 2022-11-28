@@ -156,17 +156,23 @@
                 data: {},
                 success: function (response) {
                     doc = response['comments_list']
+                    {#console.log(doc)#}
                     for (let i = 0; i < doc.length; i++) {
                         let comment = doc[i]['comment']
+                        {#console.log(comment);#}
                         let name = doc[i]['name']
+                        {#console.log(name);#}
                         let time = doc[i]['time']
-                        console.log(doc[i]['time']);
+                        {#console.log(time);#}
+                        let _id = doc[i]['_id']['$oid']
+                        {#console.log(_id);#}
                         {#console.log(doc[1]['time']);#}
                         {#console.log(doc[2]['time']);#}
                         let temp_html = `    <div class="card">
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
-                                                <small text-align="right">${time}</small>
+                                                <small text-align="right">${time}</small>    <button onclick="delete_comment(${this.data._id})" type="button" class="delete btn btn-outline-secondary" data-id=${_id}>삭제</button>
+
                                                 <p>${comment}</p>
                                                 <footer class="blockquote-footer">${name}</footer>
                                             </blockquote>
@@ -192,7 +198,7 @@
                 {#        bNum = +bNum + 120000#}
                 {#    }#}
                 {#    return aNum > bNum ? -1 : 1;#}
-                {#}#}
+{#                #}
                 return (a, b) => b[field_name] - a[field_name];
             }
 
@@ -201,10 +207,11 @@
                 let comment = rows[i]['comment']
                 let name = rows[i]['name']
                 let time = rows[i]['time']
+                let _id = rows[i]['_id']['$oid']
                 let temp_html = `    <div class="card">
                                 <div class="card-body">
                                     <blockquote class="blockquote mb-0">
-                                        <small text-align="right">${time}</small>
+                                        <small text-align="right">${time}</small><button onclick="delete_comment(${this.data("id")})" type="button" class="delete btn btn-outline-secondary" data-id=${_id}>삭제</button>
                                         <p>${comment}</p>
                                         <footer class="blockquote-footer">${name}</footer>
                                     </blockquote>
@@ -217,7 +224,7 @@
             }
         }
 
-        // 과거수 정렬
+        // 과거순 정렬
         function old_comment() {
             $('#comment-cards').empty()
 
@@ -231,7 +238,7 @@
                 {#        bNum = +bNum + 120000#}
                 {#    }#}
                 {#    return aNum > bNum ? 1 : -1;#}
-                {#}#}
+{#                }#}
                 return (a, b) => a[field_name] - b[field_name];
             }
 
@@ -240,10 +247,11 @@
                 let comment = rows[i]['comment']
                 let name = rows[i]['name']
                 let time = rows[i]['time']
+                let _id = rows[i]['_id']['$oid']
                 let temp_html = `    <div class="card">
                                 <div class="card-body">
                                     <blockquote class="blockquote mb-0">
-                                        <small text-align="right">${time}</small>
+                                        <small text-align="right">${time}</small><button onclick="delete_comment(${this.data._id})" type="button" class="delete btn btn-outline-secondary" data-id=${_id}>삭제</button>
                                         <p>${comment}</p>
                                         <footer class="blockquote-footer">${name}</footer>
                                     </blockquote>
@@ -254,6 +262,22 @@
             if ($('#comment-cards').is(':hidden')) {
                 $('#comment-cards').show();
             }
+        }
+
+        // DELETE
+        function delete_comment(_id) {
+            {#let _id = $(e.target.dataset.id)#}
+            {#let _id = $(this).target.dataset.id#}
+            console.log(_id)
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/comments/delete/_id',
+                data: {_id: _id},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
         }
 
         // 댓글 보이기

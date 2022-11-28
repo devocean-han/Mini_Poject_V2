@@ -130,8 +130,8 @@ def post_comment():
         }
         id = db.miniProject.insert_one(doc)
 
-        resp = jsonify("Comment added successfully!")
-            # 'msg': 라고 안해줬는데 출력이 잘 될까?
+        resp = jsonify({'msg': "Comment added successfully!"})
+            # 'msg': 라고 안해줬는데 출력이 잘 될까? => 'undefined'라고 출력된다.
         resp.status_code = 200
         return resp
     else:
@@ -142,7 +142,10 @@ def post_comment():
 @app.route("/api/comments", methods=["GET"])
 def get_comments():
     comments_list = list(db.miniProject.find())
-    resp = json_util.dumps(comments_list)  # json_util.dumps가 아니기 때문에 에러날 것 같다 체크 필요!
+    # resp = json_util.dumps(comments_list)
+        # => 그냥 이렇게 해서는 바이너리로 깨져서 가는데다 어째선지 모든 값이 undefined로만 인식된다.
+        # => 그래서 이전에 만들어둔 parse_json() 사용!
+    resp = jsonify({'comments_list': parse_json(comments_list)})
     return resp
 
 
