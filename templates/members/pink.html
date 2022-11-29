@@ -250,13 +250,26 @@
                 url: '/api/comments',
                 data: {name_give: name, comment_give: comment, time_give: time, pwd_give: pwd},
                 success: function (response) {
-                    console.log(response, typeof(response))
                     alert(response)
                     {#alert(response['msg'])#}
                     window.location.reload()
                 }
             })
         }
+
+        // Un과 Official에 마우스가 올라오면 글씨 바꾸기:
+        $("#official").hover(function() {
+            $("#official").val("테스트");
+        });
+
+        // TMI 카드 중 4번째 카드에 마우스 오버하면 다른 내용물 표시:
+        // $(function() {
+            $("#card4").mouseover(function() {
+                alert("hover가 인식되긴 했소 ");
+                $("img", this).attr(src, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD_sfZruriNZ2vQ0L6yLm9Lm_k0lvPIKxPQ&usqp=CAU");
+                $("h5", this).text("9번");
+                $("p", this).text("...mouseover 테스트중!")
+            });
 
     </script>
 </head>
