@@ -143,39 +143,20 @@
     </style>
     <script>
         let doc = [];
+
         $(document).ready(function () {
             reload_comment();
         });
 
-        // DELETE
-        // id를 데이터로 보내는 게 아니라 api 주소에 껴넣어 보내고,
-        // 비밀번호를 데이터로 보내야겠다. (넣을 수 있게 된다면...)
-        function delete_comment(_id) {
-            {#let _id = $(e.target.dataset.id)#}
-            {#let _id = $(this).target.dataset.id#}
-            console.log(_id)
-            $.ajax({
-                type: 'DELETE',
-                url: '/api/comments/delete/' + _id,
-                data: {},
-                success: function (response) {
-                    {#alert(response['msg'])#}
-                    console.log(typeof response)
-                    alert(response)
-                    window.location.reload()
-                }
-            })
-        }
-
         // GET - 댓글 불러오기
         function reload_comment() {
-
             $.ajax({
                 type: "GET",
                 url: "/api/comments",
                 data: {},
+                dataType: "json",
                 success: function (response) {
-                    doc = response['comments_list']
+                    doc = response //['comments_list']
                     {#console.log(doc)#}
                     for (let i = 0; i < doc.length; i++) {
                         let comment = doc[i]['comment']
@@ -204,6 +185,33 @@
                 }
             });
         }
+
+
+        // DELETE
+        // id를 데이터로 보내는 게 아니라 api 주소에 껴넣어 보내고,
+        // 비밀번호를 데이터로 보내야겠다. (넣을 수 있게 된다면...)
+        function delete_comment(_id) {
+            let password = prompt("댓글 작성시 설정한 비밀번호를 입력해주세요")
+            if (!password) { // '', false, undefined, null, 0등인 경우
+                alert("비밀번호가 입력되지 않았습니다")
+                return
+            }
+            {#let _id = $(e.target.dataset.id)#}
+            {#let _id = $(this).target.dataset.id#}
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/comments/delete/' + _id,
+                data: {pwd: password},
+                success: function (response) {
+                    alert(response)
+                    window.location.reload()
+                },
+                error: function(jqXHR) {
+                    alert(jqXHR['responseJSON']['message'])
+                }
+            })
+        }
+
 
         // 최신순 정렬
         function new_comment() {

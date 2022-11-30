@@ -136,42 +136,43 @@
     </style>
     <script>
 
+        $(document).ready(function () {
+            // TMI 카드 중 4번째 카드에 마우스 오버하면 다른 내용물 표시:
+            $("#card4").mouseover(function () {
+                $("img", this).attr('src', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD_sfZruriNZ2vQ0L6yLm9Lm_k0lvPIKxPQ&usqp=CAU");
+                $("h5", this).text("9번");
+                $("p", this).text("...mouseover 테스트중!")
+            });
 
-        // Official 버튼을 누르면 Unofficial 카드들을 모두 숨김.
-        // Official 카드들을 보임
-        function showOfficial() {
-            if ($('.unofficial-cards').is(':visible')) {
-                $('.unofficial-cards').hide();
-            }
-            $('.official-cards').show();
-        }
+            $("#official").on({
+                mouseenter: function() {
+                    $("#official").html("소개");
+                },
+                mouseleave: function() {
+                    $("#official").html("Official");
+                },
+                click: function() {
+                    if ($(".unofficial-cards").is(':visible')) {
+                        $(".unofficial-cards").hide();
+                    }
+                    $(".official-cards").show();
+                }
+            })
 
-        // Unofficial 버튼을 누르면 Official 카드들을 모두 숨김.
-        // Unofficial 카드들을 보임.
-        function showUnofficial() {
-            // if ($("official-cards").is(":visible")) {
-            //     $(".official-cards").hide();
-            // }
-            $(".official-cards").hide(); // 왜 여기서 if는 안 먹히지? 똑같은데...
-            $('.unofficial-cards').show();
-        }
+            $("#unofficial").on({
+                mouseenter: function() {
+                    $("#unofficial").html("TMI 대방출!");
+                },
+                mouseleave: function() {
+                    $("#unofficial").html("Unofficial");
+                },
+                click: function() {
+                    $(".official-cards").hide();
+                    $(".unofficial-cards").show();
+                }
+            })
+        });
 
-
-        // // Un과 Official에 마우스가 올라오면 글씨 바꾸기:
-        // $("#official").hover(function() {
-        //     $("#official").val("소개");
-        // });
-        //=> 왜 안되지ㅠㅠ
-
-        {#// TMI 카드 중 4번째 카드에 마우스 오버하면 다른 내용물 표시:#}
-        {#// $(function() {#}
-        {#    $("#2").mouseover(function() {#}
-        {#        alert("hover가 인식되긴 했소 ");#}
-        {#        $("img", this).attr(src, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD_sfZruriNZ2vQ0L6yLm9Lm_k0lvPIKxPQ&usqp=CAU");#}
-        {#        $("h5", this).text("9번");#}
-        {#        $("p", this).text("...라고 합니다만 그보다는 에니어그램의 9번이 더 맞는 것 같습니다")#}
-        {#    });#}
-        // => 왜 안될까...
 
         // 어째선지 인라인으로 넣어줘야 정상 작동한다. 그래서 함수로 만들기로 했다.
         // 1번 카드에 마우스 올라오면 내용물 바꾸기:
@@ -257,20 +258,6 @@
             })
         }
 
-        // Un과 Official에 마우스가 올라오면 글씨 바꾸기:
-        $("#official").hover(function() {
-            $("#official").val("테스트");
-        });
-
-        // TMI 카드 중 4번째 카드에 마우스 오버하면 다른 내용물 표시:
-        // $(function() {
-            $("#card4").mouseover(function() {
-                alert("hover가 인식되긴 했소 ");
-                $("img", this).attr(src, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD_sfZruriNZ2vQ0L6yLm9Lm_k0lvPIKxPQ&usqp=CAU");
-                $("h5", this).text("9번");
-                $("p", this).text("...mouseover 테스트중!")
-            });
-
     </script>
 </head>
 
@@ -287,8 +274,8 @@
 </div>
 
 <div class="buttons">
-    <button onclick="showOfficial()" type="button" id="official" class="btn btn-outline-secondary">소개</button>
-    <button onclick="showUnofficial()" type="button" id="unofficial" class="btn btn-outline-primary">TMI 대방출</button>
+    <button type="button" id="official" class="btn btn-outline-secondary">Official</button>
+    <button type="button" id="unofficial" class="btn btn-outline-primary">Unofficial</button>
 </div>
 <div class="official-cards">
     <div class="card mb-3" style="max-width: 740px;">

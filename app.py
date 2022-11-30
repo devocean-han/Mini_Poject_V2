@@ -120,6 +120,11 @@ def post_comment():
     time = request.form['time_give']
     _password = request.form['pwd_give']
 
+    # 프론트에서 name, comment 안 쓰면 쓰라고 하는데 굳이 여기서 테스트?
+    # 만약 그런 거 테스트 안 하는 프론트에서 온 요청이라면, 즉 한 군데가
+    # 빠져서 왔다면 바로 not_found()에러 던지는 거임? 적절하지 않은데...
+    # '데이터가 한두 군데 빠졌다'라는 에러를 내야지, 그런 url은 찾을 수 없다고
+    # 하는 게 맞는... 건가?
     if name and comment and time and request.method == "POST":
         _hashed_password = generate_password_hash(_password)
         doc = {
@@ -129,11 +134,9 @@ def post_comment():
             'pwd': _hashed_password,
         }
         id = db.miniProject.insert_one(doc)
+        # => 현재로선 아무곳에도 쓰이지 않는다. 어디 기똥차게 써먹을 방법 없을까?
 
-        resp = jsonify("Comment added successfully!", msg2="Another message~")
-        # resp = jsonify({'msg': "Comment added successfully!", 'msg2':"Another message~"})
-        # resp = jsonify(msg="Comment added successfully!", msg2="Another message~")
-            # 'msg': 라고 안해줬는데 출력이 잘 될까? => 'undefined'라고 출력된다.
+        resp = jsonify("Comment added successfully!")
         resp.status_code = 200
         return resp
     else:
@@ -144,10 +147,7 @@ def post_comment():
 @app.route("/api/comments", methods=["GET"])
 def get_comments():
     comments_list = list(db.miniProject.find())
-    # resp = json_util.dumps(comments_list)
-        # => 그냥 이렇게 해서는 바이너리로 깨져서 가는데다 어째선지 모든 값이 undefined로만 인식된다.
-        # => 그래서 이전에 만들어둔 parse_json() 사용!
-    resp = jsonify({'comments_list': parse_json(comments_list)})
+    resp = json_util.dumps(comments_list, ensure_ascii=False)
     return resp
 
 
@@ -162,6 +162,13 @@ def get_comment(id):
 # DELETE a comment
 @app.route("/api/comments/delete/<id>", methods=["DELETE"])
 def delete_comment(id):
+    # 비밀번호가 맞지 않으면 비밀번호가 맞지 않다는 에러 메세지 반환
+    _password_given = request.form['pwd']
+    _true_password = db.miniProject.find_one({'_id': ObjectId(id)})['pwd']
+    if not check_password_hash(_true_password, _password_given):
+        return unauthorized()
+
+    # 비밀번호가 맞으면 해당 id 코멘트 삭제
     db.miniProject.delete_one({'_id': ObjectId(id)})
     resp = jsonify("The comment was deleted successfully")
     resp.status_code = 200
